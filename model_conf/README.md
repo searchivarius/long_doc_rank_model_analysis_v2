@@ -1,13 +1,8 @@
 # Model configurations
 
-There are two sets of configurations files: 
-[configurataion files for the main experiement](main) and
-[configuration files for sensitivity analysis](ablations).
+Below is the list of main model configuration files:
 
-Below is the list of main model configuration files together with model names and FlexNeuART codes.
-We have not released Neural Model 1 due to patenting/licensing limitations.
-
-| model name                     | FlexNeuART model code       | configuration file                                 |
+| model name                     | model code                  | configuration file                                 |
 |--------------------------------|-----------------------------|----------------------------------------------------|
 | AvgP                           | vanilla_bert                | config_long.json                                   |
 | FirstP (BERT)                  | vanilla_bert                | config_short.json                                  |
