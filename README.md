@@ -2,7 +2,7 @@
 
 This repository accompanies a paper to facilitate its reproducibility: *"Evaluation of Models for Ranking of Long Documents"*.
 
-It also has an online appendix, available by [this link](report/ECIR_2024__Understanding_performance_of_long_document_ranking_models_through_comprehensive_evaluation_and_leaderboarding__Appendix_.pdf)
+It also has an online appendix, available by [this link](report/ECIR_2024_longdoc_appendix.pdf)
 
 **Important notes:** 
 
