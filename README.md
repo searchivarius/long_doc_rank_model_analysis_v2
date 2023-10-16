@@ -6,8 +6,8 @@ It also has an online appendix, available by [this link](report/ECIR_2024_longdo
 
 **Important notes:** 
 
-1. We provide scripts to train the models as well as all necessary configuration files.
-2. To install the retrieval toolkit, please, use the [bootstrapping script](hist_scripts/bootstrap.sh). However, some collection-specific data needs to be created separately (see below).
+1. We provide all necessary configuration files to train the models (as well as sample training scripts for [hist_scripts/msmarco/](MS MARCO) and [hist_scripts/robust04](Robust04).
+2. To install the retrieval toolkit as well as download crucial training data one will be able to use the bootstrapping script. However, some collection-specific data will have to be created separately (see below).
 
 The framework is used out-of-the-box and provides documentations regarding **installation**, indexing collections, and training 
 the models.
