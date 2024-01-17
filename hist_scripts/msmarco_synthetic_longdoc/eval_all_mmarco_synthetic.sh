@@ -7,7 +7,7 @@ set -e -o pipefail
 export COLLECT_ROOT=$HOME/data/collections
 DEVICE_NAME=cuda:0
 EVAL_RERUN_STAT=eval_rerank.json
-BATCH_SIZE=16
+BATCH_SIZE=8
 
 ADD_OPT=""
 DATASET=msmarco_synthetic_longdoc
