@@ -23,5 +23,15 @@ for train_stat in `find $MODEL_ROOT_DIR -name train_stat.json|fgrep ".json/$seed
     echo $model_dir
     echo $model_type $model_conf
 
+    model_dir_suffix=`echo $model_dir|sed 's/^.*derived_data[/]ir_models//'`
+    dst_train_stat="$COLLECT_DIR/derived_data/ir_models/$model_dir_suffix/train_stat.json"
+    echo $model_dir_suffix
+    if [ -f "$dst_train_stat" ] ; then
+        echo "Skipping $model_type $model_conf  -> $model_dir_suffix"
+        continue
+    else
+        echo "Processing $dst_train_stat"
+    fi
+
     $abs_path/train_msmarco_synthetic_longdoc_one_model_one_seed.sh $seed $model_type $model_conf
 done

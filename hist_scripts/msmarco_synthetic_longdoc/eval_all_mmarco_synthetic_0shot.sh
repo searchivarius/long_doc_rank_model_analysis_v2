@@ -31,6 +31,9 @@ for part in dev_official_sample1K ; do
     if [ ! -d "$dst_dir" ] ; then
         echo "Making dir: $dst_dir"
         mkdir $dst_dir
+    else
+        echo "Making dir writeable: $dst_dir"
+        chmod +w "$dst_dir"
     fi
 
     echo $part $METRIC $train_stat

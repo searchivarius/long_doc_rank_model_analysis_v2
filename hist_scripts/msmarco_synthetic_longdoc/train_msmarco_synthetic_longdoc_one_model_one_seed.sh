@@ -18,7 +18,7 @@ cd $HOME/src/FlexNeuART/scripts
 
 ./train_nn/train_model.sh  \
      -init_model $init_model \
-     -add_exper_subdir $model_conf \
+     -add_exper_subdir model_conf/$model_conf \
      -epoch_qty $epoch_qty \
      -seed $seed \
      $dataset \
