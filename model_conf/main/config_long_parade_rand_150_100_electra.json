@@ -20,6 +20,7 @@
   "model.bert_flavor" : "cross-encoder/ms-marco-electra-base",
   "model.aggreg_layer_qty" : 2, 
   "model.aggreg_head_qty" : 4,
+
   "model.window_size" : 150,
   "model.stride" : 100,
 

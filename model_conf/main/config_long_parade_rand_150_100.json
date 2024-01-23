@@ -21,6 +21,9 @@
   "model.aggreg_layer_qty" : 2, 
   "model.aggreg_head_qty" : 4,
 
+  "model.window_size" : 150,
+  "model.stride" : 100,
+
   "backprop_batch_size" : 1,
   "batch_size" : 16,
   "batch_size_val" : 16,
