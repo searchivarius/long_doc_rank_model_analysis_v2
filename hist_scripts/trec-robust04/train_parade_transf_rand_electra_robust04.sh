@@ -10,8 +10,8 @@ set -e -o pipefail
 
 export COLLECT_ROOT=$HOME/data/collections
 dataset=trec-robust04
-model_type=vanilla_bert_stand
-model_conf=config_long_jina_base_v2.json
+model_type=parade_transf_rand
+model_conf=config_long_parade_rand_electra_150_100.json
 train_data=cedr_robust04_${field}_1000_1000_0_100_0_s0_fold${fold}_train/text_raw/
 init_model=$COLLECT_ROOT/msmarco_v1/derived_data/ir_models/$model_type/model_conf/$model_conf/$seed/model.best
 epoch_repeat_qty=100

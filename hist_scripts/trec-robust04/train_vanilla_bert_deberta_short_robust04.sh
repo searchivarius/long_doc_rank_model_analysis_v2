@@ -16,8 +16,6 @@ train_data=cedr_robust04_${field}_1000_1000_0_100_0_s0_fold${fold}_train/text_ra
 init_model=$COLLECT_ROOT/msmarco_v1/derived_data/ir_models/$model_type/model_conf/$model_conf/$seed/model.best
 epoch_repeat_qty=100
 
-cd $HOME/src/FlexNeuART/scripts 
-
 ./train_nn/train_model.sh  \
      -epoch_repeat_qty $epoch_repeat_qty \
      -init_model $init_model \

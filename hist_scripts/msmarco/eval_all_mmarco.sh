@@ -11,6 +11,8 @@ BATCH_SIZE=16
 
 ADD_OPT=""
 
+MODEL_ROOT_DIR=$COLLECT_ROOT/msmarco_v1/derived_data/ir_models/
+
 for part in dev_official test2019 test2020 test2021 ; do
   if [ "$part" = "test2021" ] ; then
     DATASET=msmarco_v2
@@ -25,13 +27,12 @@ for part in dev_official test2019 test2020 test2021 ; do
   fi
   COLLECT_DIR=$COLLECT_ROOT/$DATASET
   [ ! -d $COLLECT_DIR ] && { echo "Missing dir: $COLLECT_DIR" ; exit 1 ; }
-  MODEL_ROOT_DIR=$COLLECT_DIR/derived_data/ir_models/
   RUN_FILE=$COLLECT_DIR/derived_data/trec_runs_cached/$DATASET/$part/run_100.bz2
 
   echo "Searching in $MODEL_ROOT_DIR"
   echo "Run file $RUN_FILE"
 
-  for train_stat in `find $MODEL_ROOT_DIR -name train_stat.json|fgrep ".json/$seed/"` ; do
+  for train_stat in `find -L $MODEL_ROOT_DIR -name train_stat.json|fgrep ".json/$seed/"` ; do
     model_dir=`dirname $train_stat`
     dst_dir=$model_dir/$part
     if [ ! -d "$dst_dir" ] ; then
