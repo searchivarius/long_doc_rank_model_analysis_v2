@@ -12,8 +12,6 @@ gpu_qty=`nvidia-smi -L|wc -l`
 batch_sync_qty=4
 train_data=cedr_mcds_100_50_0_5_0_s0_bitext_2021-11-17/text_raw
 
-cd $HOME/src/FlexNeuART/scripts 
-
 ./train_nn/train_model.sh  \
      -add_exper_subdir $model_conf \
      -seed $seed \
