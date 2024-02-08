@@ -7,7 +7,7 @@ set -e -o pipefail
 export COLLECT_ROOT=$HOME/data/collections
 dataset=msmarco_v1
 model_type=bert_maxp
-model_conf=model_conf/config_long_electra.json
+model_conf=model_conf/config_long_deberta.json
 gpu_qty=`nvidia-smi -L|wc -l`
 batch_sync_qty=4
 train_data=cedr_mcds_100_50_0_5_0_s0_bitext_2021-11-17/text_raw
