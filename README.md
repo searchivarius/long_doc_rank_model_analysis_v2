@@ -2,7 +2,7 @@
 
 This repository accompanies a paper to facilitate its reproducibility: *"Evaluation of Models for Ranking of Long Documents"*.
 
-It also has an online appendix, available at [this link](report/Evaluation_of_Models_for_Ranking_of_Long_Documents_appendix.pdf)
+It also has an online appendix, available by [this link](report/Evaluation_of_Models_for_Ranking_of_Long_Documents_appendix.pdf)
 
 **Important notes:** 
 
