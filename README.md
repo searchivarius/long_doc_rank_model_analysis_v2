@@ -4,6 +4,13 @@ This repository accompanies a paper to facilitate its reproducibility: *"Evaluat
 
 It also has an online appendix, available by [this link](report/Evaluation_of_Models_for_Ranking_of_Long_Documents_appendix.pdf)
 
+The MS MARCO FarRelevant collection can be downloaded using [this link](https://file.io/Grh3kSiJn9Hq). The format of the dataset is described [here](MSMARCO_FarRelevant.md). One can also download and unpack the dataset using the following shell commands:
+```
+wget https://file.io/Grh3kSiJn9Hq
+mv Grh3kSiJn9Hq msmarco_synthetic_longdoc_2024-01-23.tar.bz2
+tar jxvf msmarco_synthetic_longdoc_2024-01-23.tar.bz2
+```
+
 **Important notes:** 
 
 1. We provide all necessary configuration files to train the models (as well as sample training scripts for [hist_scripts/msmarco/](MS MARCO) and [hist_scripts/robust04](Robust04).
