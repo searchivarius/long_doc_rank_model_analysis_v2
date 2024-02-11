@@ -4,7 +4,7 @@ This repository accompanies a paper to facilitate its reproducibility: *"Evaluat
 
 It also has an online appendix, available by [this link](report/Evaluation_of_Models_for_Ranking_of_Long_Documents_appendix.pdf)
 
-The MS MARCO FarRelevant collection can be downloaded using [this link](https://file.io/Grh3kSiJn9Hq). The format of the dataset is described [here](MSMARCO_FarRelevant.md). One can also download and unpack the dataset using the following shell commands:
+The MS MARCO FarRelevant collection can be downloaded using [this link](https://file.io/Grh3kSiJn9Hq). The format of the dataset is described [here](MSMARCO_FarRelevant.md). The dataset is downloaded by the [hist_scripts/bootstrap.sh](Bootstrapping script). Alternatively, one can also download and unpack the dataset (without generated training data) using the following shell commands:
 ```
 wget https://file.io/Grh3kSiJn9Hq
 mv Grh3kSiJn9Hq msmarco_synthetic_longdoc_2024-01-23.tar.bz2
@@ -13,11 +13,21 @@ tar jxvf msmarco_synthetic_longdoc_2024-01-23.tar.bz2
 
 **Important notes:** 
 
+Bootstrapping script was tested on Amazon Linux, using AMI Deep Learning AMI GPU PyTorch 1.13.1 (Amazon Linux 2) 20230818
+Before running this script you need to activate conda for bash and install Python 3.x: 
+```
+conda init bash
+```
+Start a new bash session:
+```
+conda install python==3.10
+```
+
 1. We provide all necessary configuration files to train the models (as well as sample training scripts for [hist_scripts/msmarco/](MS MARCO) and [hist_scripts/robust04](Robust04).
+
 2. To install the retrieval toolkit as well as download crucial training data one will be able to use the bootstrapping script. However, some collection-specific data will have to be created separately (see below).
 
-The framework is used out-of-the-box and provides documentations regarding **installation**, indexing collections, and training 
-the models.
+The framework is used out-of-the-box and provides documentations regarding **installation**, indexing collections, and training the models.
 
 Crucially:
 1. The list of models with corresponding configuration files can be [found in this folder](model_conf).
@@ -42,6 +52,10 @@ containing (potentially multiple) collection sub-directories.
 set itself.
 7. In the case of Robust04 collections, we evaluate performance in the cross-validation mode. Thus,
 one trains and validates a model for each fold and then merges output runs.
+
+# MS MARCO FarRelevant
+
+There is no need to carry out additional preprocessing, since the bootstrapping scripts downloads both the source data and training data. In the case of MS MARCO FarRelevant, exported data is sufficient to carry out both training and evaluation.
 
 # MS MARCO
 ## Full data processing for MS MARCO v1 and v2
