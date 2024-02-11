@@ -6,7 +6,15 @@ export COLLECT_ROOT=$HOME/data/collections
 DATASET=msmarco_v1
 mkdir -p $COLLECT_ROOT/$DATASET/derived_data
 mkdir -p $COLLECT_ROOT/$DATASET/model_conf
-mkdir -p $COLLECT_ROOT/$DATASET/hist_scripts
+
+DATASET=msmarco_synthetic_longdoc
+cd $COLLECT_ROOT/$DATASET/derived_data
+wget https://file.io/yVisDnLlS2Zs
+mv yVisDnLlS2Zs cedr_mcds_100_50_0_5_0_s0_bitext_2021-11-17.tar.bz2  
+tar jxvf cedr_mcds_100_50_0_5_0_s0_bitext_2021-11-17.tar.bz2
+
+mkdir -p $COLLECT_ROOT/$DATASET/derived_data
+mkdir -p $COLLECT_ROOT/$DATASET/model_conf
 
 mkdir $HOME/src
 cd $HOME/src
@@ -18,8 +26,3 @@ cd FlexNeuART
 pip install .
 cd $HOME
 
-
-cd $COLLECT_ROOT/$DATASET/derived_data
-wget https://file.io/yVisDnLlS2Zs
-mv yVisDnLlS2Zs cedr_mcds_100_50_0_5_0_s0_bitext_2021-11-17.tar.bz2  
-tar jxvf cedr_mcds_100_50_0_5_0_s0_bitext_2021-11-17.tar.bz2
