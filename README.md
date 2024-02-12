@@ -11,21 +11,11 @@ mv Grh3kSiJn9Hq msmarco_synthetic_longdoc_2024-01-23.tar.bz2
 tar jxvf msmarco_synthetic_longdoc_2024-01-23.tar.bz2
 ```
 
-**Important notes:** 
-
-Bootstrapping script was tested on Amazon Linux, using AMI Deep Learning AMI GPU PyTorch 1.13.1 (Amazon Linux 2) 20230818
-Before running this script you need to activate conda for bash and install Python 3.x: 
-```
-conda init bash
-```
-Start a new bash session:
-```
-conda install python==3.10
-```
+# Preliminary but important notes
 
 1. We provide all necessary configuration files to train the models (as well as some of the training scripts for [MS MARCO FarRelevant](hist_scripts/msmarco_synthetic_longdoc/) [MS MARCO](hist_scripts/msmarco) and [Robust04](hist_scripts/robust04).
 
-2. To install the retrieval toolkit as well as download crucial training data one will be able to use the [bootstrapping script](hist_scripts/bootstrap.sh). However, some collection-specific data will have to be created separately (see below).
+2. To install the retrieval toolkit as well as to download training data (except Robust04) please use the [bootstrapping script](hist_scripts/bootstrap.sh). However, some collection-specific data will have to be created separately, see [Full data processing](#Full data processing for).
 
 The framework is used out-of-the-box and provides documentations regarding **installation**, indexing collections, and training the models.
 
@@ -38,6 +28,79 @@ Crucially:
 **Important note:** We cannot provided a prepared training set for Robust04, because it would contain documents, which cannot be accessed by the general public unless they [sign a licensing agreement with NIST](https://trec.nist.gov/data/cd45/index.html).
 
 # Data processing and model training
+# Simplified data processing for MS MARCO (v1/v2) and MS MARCO FarRelevant
+
+## Bootstrapping
+
+Bootstrapping requires running thie [bootstrapping script](hist_scripts/bootstrap.sh). Before running this script you need to activate conda for bash and install Python 3.x. The following instructions (and the bootstrapping script) are designed for Amazon Linux with the image  ```AMI Deep Learning AMI GPU PyTorch 1.13.1 (Amazon Linux 2)```
+```
+conda init bash
+```
+Start a new bash session:
+```
+conda install python==3.10
+```
+Then one should run the bootstrapping script. It accepts one argument: a directory to install scripts:
+```
+hist_scripts/bootstrap.sh  ~/scripts
+```
+To run further scripts one has to "point" the environmental variable `COLLECT_ROOT` to the datasets' locations:
+```
+export COLLECT_ROOT=$HOME/data/collections
+```
+
+Additionally the bootstrapping script creates two sub-directories: `msmarco_v1` and `msmarco_synthetic_longdoc` under `~/data/collections` for MS MARCO and MS MARCO FarRelevant respectively. Each dataset has sub-directories with model configurations and training data (under `derived_data`). Here is an example of MS MARCO v1:
+```
+├── derived_data
+│   └── cedr_mcds_100_50_0_5_0_s0_bitext_2021-11-17
+└── model_conf
+        ├── config_long_bigbird.json
+        ├── config_long_cedr_pacrr.json
+        ├── config_long_drmm.json
+        ...
+        └── config_long_longformer.json
+```
+Each model has its unique code: Parameters are specified via a configuration file.
+Except for Neural Model 1, all models and their configuration files are [described here](model_conf/README.md).
+Most models train on a single GPU with 11 GB memory. 
+This includes PARADE models with provided values of a sliding window size and stride. 
+However, if you substnatially decrease the window size, you will need a bigger-memory GPU. 
+Likewise, a full-length Longformer needs more memory (we trained it on RTX 3090 24GB).
+BTW, the full-length document is still truncated to have at most 1471 subword tokens.
+Further increase in the input length has virtually no effect on model performance.
+
+Assume we chose to train a basic BERT `FirstP` model, which has the code `vanilla_bert`
+and a config `model_conf/config_short.json`. 
+Then training can be carried out as follows: 
+Go to the directory where you installed FlexNeuART additional scripts and run the training script:
+```
+export COLLECT_ROOT=$HOME/data/collections
+cd ~/scripts
+./train_nn/train_model.sh  \
+    msmarco_v1 \
+    cedr_mcds_100_50_0_5_0_s0_bitext_2021-11-17/text_raw \
+    vanilla_bert \
+    -json_conf model_conf/config_short.json
+```
+This script will run for one epoch (more does not help) and produce output (model including) in the following
+directory:
+```
+$COLLECT_ROOT/msmarco_v1/derived_data/ir_models/vanilla_bert/0
+```
+
+The script computes the value of the MAP metric, however, this is done only for a small test set sample.
+To fully validate the trained model one needs the following:
+
+1. A processed MS MARCO collection with an indexed field `text_raw` (forward index type `textRaw`). 
+2. A run that represents a test part of interest, e.g., [TREC DL 2019 run](trec_runs_cached/msmarco_v1/test2019). All runs for the first-stage retriever are provided in this repository!
+3. A processed query file, e.g., [this one](queries/msmarco_v1/test2019) for TREC DL 2019.
+4. A relevance information (QREL) file (provided except for TREC DL 2021).
+5. The script `train_nn/eval_model.py`
+
+The validation procedure for MS MARCO v2 and TREC DL 2021 is analogous
+
+# Full data processing
+## Overview
 
 The model training & evaluation pipeline has the following steps:
 1. Downloading and indexing data (collection specific).
@@ -53,12 +116,11 @@ set itself.
 7. In the case of Robust04 collections, we evaluate performance in the cross-validation mode. Thus,
 one trains and validates a model for each fold and then merges output runs.
 
-# MS MARCO FarRelevant
+## MS MARCO FarRelevant
 
 There is no need to carry out additional preprocessing, since the bootstrapping scripts downloads both the source data and training data. In the case of MS MARCO FarRelevant, exported data is sufficient to carry out both training and evaluation.
 
-# MS MARCO
-## Full data processing for MS MARCO v1 and v2
+## MS MARCO v1 and v2
 
 We experiment with two MS MARCO collections: v1 and v2. They have 
 collection specific conversion scripts which can be found in respective sub-directories of the [data_convert](https://github.com/oaqa/FlexNeuART/tree/master/scripts/data_convert).
@@ -67,15 +129,11 @@ directory. A simplified training procedure (with precomputed training data) is d
 Importantly, to generate training data and reproduce all results, one needs
 to create a Lucene index that combines original lemmatized text with `doc2query` data. The respective scripts
 can be found [here](https://github.com/oaqa/FlexNeuART/tree/master/scripts/data_convert/msmarco/add_doc2query_docs.py).
-FlexNeuART input data is organized into multiple-fields, the default searchable field is `text`
+The rerieval's toolkit input data is organized into multiple-fields, the default searchable field is `text`
 and this is the field that needs to be expanded using `doc2query`. The expansion process 
 creates a new text field, which can be then indexed using Lucene.
 
-**Note on retrieval tookit field terminology:** although it may be worth renaming some fields in the future,
-currently both the query and the document ID are encoded using the field name `DOCNO` (which sometimes causes confusion). 
-The field names are the same, but the data files are different!
-When `DOCNO` is present in `AnswerFields.jsonl` file, it is a document ID, when it is present 
-in `QueryFields.jsonl` it denotes a query ID. 
+**Note on retrieval tookit field terminology:** both the query and the document ID are encoded using the field name `DOCNO`: It is, however, query ID in a query file and document ID in a document file).
 
 For MS MARCO v1, candidate generator is BM25 on expanded representations.
 For MS MARCO v2, we used a more involved `dense-sparse` retriever, which linearly combines BM25 with cosine similarity 
@@ -83,7 +141,7 @@ between [ANCE embeddings](https://github.com/microsoft/ANCE).
 We  provide the output of the first-stage retriever (in the form of a compressed run in TREC NIST format) for all test query sets,
 but not for training sets.
 Such runs are also provided for Robust04 v1 and [they are all stored in this folder of this repository](trec_runs_cached).
-Note that FlexNeuART can use such runs directly as a replacement of the first-stage retriever (runs are retrieved using query IDs). 
+Note that the retrieval toolkit can use such runs directly as a replacement of the first-stage retriever (runs are retrieved using query IDs). 
 
 ## Robust04
 
@@ -93,7 +151,7 @@ a precomputed training set, but we provide the following:
 1. Preprocessed [queries and qrels](queries/robust04).
 2. [First-stage runs for fields `title` and `description`](trec_runs_cached/robust04).
 
-The indexing/training pipeline for Robust04 is covered by generic FlexNeuART documentation.
+The indexing/training pipeline for Robust04 is covered by the retrieval toolkit documentation.
 One important difference though is that the data conversion uses [a generic conversion 
 script](https://github.com/oaqa/FlexNeuART/blob/pypi2021/scripts/data_convert/ir_datasets/README.md),
 which relies on [`ir_datases`](https://ir-datasets.com/), rather than a custom script as it is 
