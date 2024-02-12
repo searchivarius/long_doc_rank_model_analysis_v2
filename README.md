@@ -11,7 +11,7 @@ mv Grh3kSiJn9Hq msmarco_synthetic_longdoc_2024-01-23.tar.bz2
 tar jxvf msmarco_synthetic_longdoc_2024-01-23.tar.bz2
 ```
 
-# Preliminary but important notes
+## Preliminary but important notes
 
 1. We provide all necessary configuration files to train the models (as well as some of the training scripts for [MS MARCO FarRelevant](hist_scripts/msmarco_synthetic_longdoc/), [MS MARCO](hist_scripts/msmarco), and [Robust04](hist_scripts/robust04).
 
@@ -27,10 +27,10 @@ Crucially:
 
 **Important note:** We cannot provided a prepared training set for Robust04, because it would contain documents, which cannot be accessed by the general public unless they [sign a licensing agreement with NIST](https://trec.nist.gov/data/cd45/index.html).
 
-# Data processing and model training
-## Simplified data processing for MS MARCO (v1/v2) and MS MARCO FarRelevant
+## Data processing and model training
+### Simplified data processing for MS MARCO (v1/v2) and MS MARCO FarRelevant
 
-### Bootstrapping
+#### Bootstrapping
 
 Bootstrapping requires running thie [bootstrapping script](hist_scripts/bootstrap.sh). Before running this script you need to activate conda for bash and install Python 3.x. The following instructions (and the bootstrapping script) are designed for Amazon Linux with the image  ```AMI Deep Learning AMI GPU PyTorch 1.13.1 (Amazon Linux 2)```
 ```
@@ -61,7 +61,7 @@ Additionally the bootstrapping script creates two sub-directories: `msmarco_v1` 
         └── config_long_longformer.json
 ```
 
-### Training
+#### Training
 Each model has its unique code: Parameters are specified via a configuration file.
 Except for Neural Model 1, all models and their configuration files are [described here](model_conf/README.md).
 Most models train on a single GPU with 11 GB memory. 
@@ -101,8 +101,8 @@ To fully validate the trained model one needs the following:
 
 The validation procedure for MS MARCO v2 and TREC DL 2021 is analogous
 
-## Full data processing
-### Overview
+### Full data processing
+#### Overview
 
 The model training & evaluation pipeline has the following steps:
 1. Downloading and indexing data (collection specific).
@@ -118,11 +118,11 @@ set itself.
 7. In the case of Robust04 collections, we evaluate performance in the cross-validation mode. Thus,
 one trains and validates a model for each fold and then merges output runs.
 
-### MS MARCO FarRelevant
+#### MS MARCO FarRelevant
 
 There is no need to carry out additional preprocessing, since the bootstrapping scripts downloads both the source data and training data. In the case of MS MARCO FarRelevant, exported data is sufficient to carry out both training and evaluation.
 
-### MS MARCO v1 and v2
+#### MS MARCO v1 and v2
 
 We experiment with two MS MARCO collections: v1 and v2. They have 
 collection specific conversion scripts which can be found in respective sub-directories of the [data_convert](https://github.com/oaqa/FlexNeuART/tree/master/scripts/data_convert).
@@ -145,7 +145,7 @@ but not for training sets.
 Such runs are also provided for Robust04 v1 and [they are all stored in this folder of this repository](trec_runs_cached).
 Note that the retrieval toolkit can use such runs directly as a replacement of the first-stage retriever (runs are retrieved using query IDs). 
 
-### Robust04
+#### Robust04
 
 Because Robust04 is not available for download (unless you sign an agreement), we cannot provide
 a precomputed training set, but we provide the following:
