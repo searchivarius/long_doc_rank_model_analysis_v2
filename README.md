@@ -13,9 +13,9 @@ tar jxvf msmarco_synthetic_longdoc_2024-01-23.tar.bz2
 
 # Preliminary but important notes
 
-1. We provide all necessary configuration files to train the models (as well as some of the training scripts for [MS MARCO FarRelevant](hist_scripts/msmarco_synthetic_longdoc/) [MS MARCO](hist_scripts/msmarco) and [Robust04](hist_scripts/robust04).
+1. We provide all necessary configuration files to train the models (as well as some of the training scripts for [MS MARCO FarRelevant](hist_scripts/msmarco_synthetic_longdoc/), [MS MARCO](hist_scripts/msmarco), and [Robust04](hist_scripts/robust04).
 
-2. To install the retrieval toolkit as well as to download training data (except Robust04) please use the [bootstrapping script](hist_scripts/bootstrap.sh). However, some collection-specific data will have to be created separately, see the section "[Full data processing](#full-data-processing)".
+2. To install the retrieval toolkit as well as to download training data (except Robust04) please use the [bootstrapping script](hist_scripts/bootstrap.sh). However, some collection-specific data may need to be created separately, see the section "[Full data processing](#full-data-processing)".
 
 The framework is used out-of-the-box and provides documentations regarding **installation**, indexing collections, and training the models.
 
