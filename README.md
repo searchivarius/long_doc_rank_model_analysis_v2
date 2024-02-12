@@ -74,7 +74,6 @@ Further increase in the input length has virtually no effect on model performanc
 Assume we chose to train a basic BERT `FirstP` model, which has the code `vanilla_bert`
 and a config `model_conf/config_short.json`. 
 Then training can be carried out as follows: 
-Go to the directory where you installed FlexNeuART additional scripts and run the training script:
 ```
 export COLLECT_ROOT=$HOME/data/collections
 cd ~/scripts
