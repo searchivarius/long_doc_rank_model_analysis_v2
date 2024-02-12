@@ -5,7 +5,7 @@ sudo yum install maven -y
 pip install flexneuart
 flexneuart_install_extra.sh $core_scripts_dir 0
 
-exper_repo_dst_dir=$core_scripts_dir/scripts/this_exper_repo
+exper_repo_dst_dir=$core_scripts_dir/this_exper_repo
 mkdir -p $exper_repo_dst_dir
 cd $exper_repo_dst_dir
 wget https://file.io/CroBcsvkzFjq
