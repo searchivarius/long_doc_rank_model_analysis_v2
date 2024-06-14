@@ -10,16 +10,16 @@ set -e -o pipefail
 
 export COLLECT_ROOT=$HOME/data/collections
 dataset=trec-robust04
-model_type=biencoder_e5
-model_subdir=longP/dwzhu/e5-base-4k
-model_conf=config_e5.json
+model_type=vanilla_bert_stand
+model_conf=config_long_tiny_llama.json
 train_data=cedr_robust04_${field}_1000_1000_0_100_0_s0_fold${fold}_train/text_raw/
-init_model=$COLLECT_ROOT/msmarco_v1/derived_data/ir_models/$model_type/model_conf/$model_subdir/$seed/model.best
+init_model=$COLLECT_ROOT/msmarco_v1/derived_data/ir_models/$model_type/model_conf/$model_conf/$seed/model.best
+epoch_repeat_qty=100
 
 ./train_nn/train_model.sh  \
-     -epoch_repeat_qty 0 -batches_per_train_epoch 0 \
+     -epoch_repeat_qty $epoch_repeat_qty \
      -init_model $init_model \
-     -add_exper_subdir $field/$model_subdir/fold${fold} \
+     -add_exper_subdir $field/$model_conf/fold${fold} \
      -seed $seed \
      $dataset \
      $train_data \

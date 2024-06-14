@@ -2,8 +2,6 @@
 
 This repository accompanies a paper to facilitate its reproducibility: *"Evaluation of Models for Ranking of Long Documents"*.
 
-It also has an online appendix, available by [this link](report/Evaluation_of_Models_for_Ranking_of_Long_Documents_appendix.pdf)
-
 The MS MARCO FarRelevant collection can be downloaded using [this link](https://file.io/Grh3kSiJn9Hq). The format of the dataset is described [here](MSMARCO_FarRelevant.md). The dataset is downloaded by the [bootstrapping script](hist_scripts/bootstrap.sh), see (simplified data processing below). Alternatively, one can also download and unpack the dataset (without generated training data) using the following shell commands:
 ```
 wget https://file.io/Grh3kSiJn9Hq
