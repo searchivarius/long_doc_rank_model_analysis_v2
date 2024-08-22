@@ -10,13 +10,16 @@ EVAL_RERUN_STAT=eval_rerank.json
 BATCH_SIZE=8
 
 ADD_OPT=""
+DATASET_MODELS=msmarco_v1
 DATASET=msmarco_synthetic_longdoc
 METRIC=recip_rank
 
 for part in dev_official_sample1K ; do
   COLLECT_DIR=$COLLECT_ROOT/$DATASET
+  COLLECT_DIR_MODELS=$COLLECT_ROOT/$DATASET_MODELS
   [ ! -d $COLLECT_DIR ] && { echo "Missing dir: $COLLECT_DIR" ; exit 1 ; }
-  MODEL_ROOT_DIR=$COLLECT_DIR/derived_data/ir_models/
+  [ ! -d $COLLECT_DIR_MODELS ] && { echo "Missing dir: $COLLECT_DIR_MODELS" ; exit 1 ; }
+  MODEL_ROOT_DIR=$COLLECT_DIR_MODELS/derived_data/ir_models/
   RUN_FILE=$COLLECT_DIR/derived_data/trec_runs_cached/$DATASET/$part/run_100.bz2
 
   echo "Searching in $MODEL_ROOT_DIR"
