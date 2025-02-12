@@ -7,13 +7,14 @@ N=100
 
 set -e -o pipefail
 
-for part in bitext dev_official_sample1K ; do
+#for part in bitext dev_official ; do
+for part in dev_official_sample1K ; do
   add_opt=""
   if [ "$part" = "bitext" ] ; then
     add_opt=" -skip_eval "
   fi
 
-  ./exper/run_experiments.sh $collect exper_desc/${RUN_SUBDIR}_test.json -test_part $part -no_separate_shell -test_cand_qty_list ${N} $add_opt
+  ./exper/run_experiments.sh $collect exper_desc/${RUN_SUBDIR}_test.json -test_part $part -no_separate_shell -test_cand_qty_list ${N} $add_opt -clean
 
   dst_dir="$collect_dir/derived_data/trec_runs_cached/$collect/$part"
   mkdir -p $dst_dir
