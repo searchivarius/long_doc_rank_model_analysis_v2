@@ -1,3 +1,8 @@
+# MINI-REVISION
+
+We create a mini-revision to address reviewer comments in June 2025, it can be found in the root of the repository.
+Feel free to use [this direct link](pos_bias_mini_revision.pdf).
+
 # REPRODUCIBILITY GUIDELINES
 
 This repository accompanies a paper to facilitate its reproducibility: "Positional Bias in Long-Document Ranking: Impact, Assessment, and Mitigation".
