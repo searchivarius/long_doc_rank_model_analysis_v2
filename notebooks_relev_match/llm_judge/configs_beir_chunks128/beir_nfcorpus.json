@@ -1,0 +1,24 @@
+{
+    "collect_root": "/home/ec2-user/data/collections",
+    "random_seed": 0,
+    "dataset": "beir_nfcorpus",
+    "doc_field_name": "text_raw",
+    "query_field_name": "text_raw",
+    "pos_query_doc_pair_qty": 2000,
+    "neg_query_doc_pair_qty": 0,
+    "human_relev_grade_treshold": 1,
+    "gpt_model_name": "gpt-4o-mini",
+    "chunking": {
+        "max_chunk_size": 128,
+        "max_chunk_qty": 18,
+        "chunk_merge_qty": 1,
+        "chunk_merge_stride": 1,
+        "heuristic_max_avg_tok_size": 10
+    },
+    "tokenization": {
+        "tokenizer_model": "bert-base-uncased",
+        "spacy_model": "en_core_web_sm"
+    },
+    "output_subdir": "derived_data/relev_info_configs_beir_chunks128/all/",
+    "input_subdir": "queries_all"
+}

@@ -1,0 +1,24 @@
+{
+    "collect_root": "/disk3/collections",
+    "random_seed": 0,
+    "dataset": "msmarco_v1",
+    "doc_field_name": "text_raw",
+    "query_field_name": "text_raw",
+    "pos_query_doc_pair_qty": 2000,
+    "neg_query_doc_pair_qty": 0,
+    "human_relev_grade_treshold": 1,
+    "gpt_model_name": "gpt-4o-mini",
+    "chunking": {
+        "max_chunk_size": 256,
+        "max_chunk_qty": 36,
+        "chunk_merge_qty": 1,
+        "chunk_merge_stride": 1,
+        "heuristic_max_avg_tok_size": 10
+    },
+    "tokenization": {
+        "tokenizer_model": "bert-base-uncased",
+        "spacy_model": "en_core_web_sm"
+    },
+    "output_subdir": "derived_data/relev_info_chunk256_no_adj_merge/test2019/",
+    "input_subdir": "test2019"
+}
