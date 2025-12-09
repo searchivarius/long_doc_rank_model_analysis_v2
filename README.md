@@ -4,7 +4,9 @@ We have **NOT** finished releasing key code!
 
 # REPRODUCIBILITY GUIDELINES
 
-This repository accompanies a paper to facilitate its reproducibility: "Positional Bias in Long-Document Ranking: Impact, Assessment, and Mitigation".
+This repository accompanies our IJCNLP–AACL 2025 paper:
+[Positional Bias in Long-Document Ranking: Impact, Assessment, and Mitigation.](https://arxiv.org/abs/2207.01262). 
+Leonid Boytsov, David Akinpelu, Nipun Katyal, Tianyi Lin, Fangwei Gao, Yutian Zhao, Jeffrey Huang, Eric Nyberg.
 
 1. The MS MARCO FarRelevant collection can be downloaded using [this link](https://pub-31b207e206fc448aa58401dc893868ae.r2.dev/msmarco_synthetic_longdoc_2024-01-23.tar.bz2). 
 2. The format of the dataset is described [here](MSMARCO_FarRelevant.md).
