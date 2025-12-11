@@ -1,1 +1,1 @@
-../../../../notebooks_2022/match_analysis/dev_offical_ours/final_results_dev_official.txt
+../../../msmarco/final_results_dev_official.txt
