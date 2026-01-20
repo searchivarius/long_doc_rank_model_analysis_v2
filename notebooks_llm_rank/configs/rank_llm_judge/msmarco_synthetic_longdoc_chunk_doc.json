@@ -1,0 +1,23 @@
+{
+    "collect_root": "/disk3/collections",
+    "dataset": "msmarco_synthetic_longdoc",
+    "dataset_result_dir": "msmarco_v1",
+    "query_part": "dev_official_sample1K",
+    "doc_field_name": "text_raw",
+    "query_field_name": "text_raw",
+    "gpt_model": "gpt-4o-mini",
+    "judge_type": "all_doc",
+    "rank_end": 100,
+    "chunking": { 
+        "max_chunk_size": 256,
+        "max_chunk_qty": 24,
+        "chunk_merge_qty": 2,
+        "chunk_merge_stride": 1,
+        "heuristic_max_avg_tok_size": 10
+    },
+    "tokenization": {
+        "tokenizer_model": "bert-base-uncased",
+        "spacy_model": "en_core_web_sm"
+    },
+    "sample_qty": null
+}

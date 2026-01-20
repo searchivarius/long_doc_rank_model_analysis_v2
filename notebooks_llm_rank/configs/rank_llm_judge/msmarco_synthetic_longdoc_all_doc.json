@@ -1,0 +1,12 @@
+{
+    "collect_root": "/disk3/collections",
+    "dataset": "msmarco_synthetic_longdoc",
+    "dataset_result_dir": "msmarco_v1",
+    "query_part": "dev_official_sample1K",
+    "doc_field_name": "text_raw",
+    "query_field_name": "text_raw",
+    "gpt_model": "gpt-4o-mini",
+    "judge_type": "all_doc",
+    "rank_end": 100,
+    "sample_qty": null
+}

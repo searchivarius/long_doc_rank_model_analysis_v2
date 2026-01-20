@@ -1,0 +1,24 @@
+{
+    "collect_root": "/disk3/collections",
+
+    "dataset": "trec-robust04",
+    "dataset_result_dir": "trec-robust04",
+    "query_part": "all",
+    "doc_field_name": "text_raw",
+    "query_field_name": "description_raw",
+
+    "prefix_config": {
+        "max_tok_qty": 512,
+        "tokenizer_model": "bert-base-uncased",
+        "spacy_model": "en_core_web_sm",
+        "heuristic_max_avg_tok_size": 10
+    },
+
+    "trec_run_subdir": "bm25/all_title", 
+
+    "model_name": "gpt-4o-mini",
+    "window_size": 20,
+    "step": 10,
+    "rank_end": 100,
+    "sample_qty": null
+}

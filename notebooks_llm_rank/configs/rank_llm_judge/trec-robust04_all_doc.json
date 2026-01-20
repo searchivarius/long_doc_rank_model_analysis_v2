@@ -1,0 +1,17 @@
+{
+    "collect_root": "/disk3/collections",
+
+    "dataset": "trec-robust04",
+    "dataset_result_dir": "trec-robust04",
+    "query_part": "all",
+    "doc_field_name": "text_raw",
+    "query_field_name": "description_raw",
+
+    "trec_run_subdir": "bm25/all_title", 
+
+
+    "gpt_model": "gpt-4o-mini",
+    "judge_type": "all_doc",
+    "rank_end": 100,
+    "sample_qty": null
+}

@@ -1,0 +1,13 @@
+{
+    "collect_root": "/disk3/collections",
+    "dataset": "msmarco_v2",
+    "dataset_result_dir": "msmarco_v1",
+    "query_part": "test2021",
+    "doc_field_name": "text_raw",
+    "query_field_name": "text_raw",
+    "model_name": "claude-3-haiku-20240307",
+    "window_size": 20,
+    "step": 10,
+    "rank_end": 100,
+    "sample_qty": null
+}
